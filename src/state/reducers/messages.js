@@ -6,7 +6,8 @@ import {ADDED_MESSAGE} from 'types'
 const initialState = {
   byId: {
     sagaOne: '',
-    sagaTwo: ''
+    sagaTwo: '',
+    sagaThree: ''
   }
 }
 
