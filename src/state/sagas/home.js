@@ -11,12 +11,12 @@ const sagaOneMessage = value => addMessage({
 
 const sagaTwoMessage = addMessage({
     key: 'sagaTwo',
-    value: 'Saga two message'
+    value: 'Saga Two message'
 })
 
-const sagaThreeMessage = addMessage({
+const sagaThreeMessage = value => addMessage({
     key: 'sagaThree',
-    value: 'Saga Three message'
+    value
 })
 
 const autoRestart = (generator, handleError) => {
@@ -34,6 +34,7 @@ const autoRestart = (generator, handleError) => {
 
 // Terribad dummy code to test PoC.
 let errorNumber = 0
+let errorNum = 0
 
 const sagaOne = autoRestart(function* sagaOne() {
     yield delay(1000)
@@ -42,7 +43,7 @@ const sagaOne = autoRestart(function* sagaOne() {
         yield put(sagaOneMessage(`Error Number ${errorNumber}`))
         throw new Error('Saga One Failed to Do a Thing')
     }
-    yield put(sagaOneMessage('Success'))
+    yield put(sagaOneMessage('Saga One message'))
 }, console.error)
 
 const sagaTwo = autoRestart(function* sagaTwo() {
@@ -51,8 +52,23 @@ const sagaTwo = autoRestart(function* sagaTwo() {
 }, console.error)
 
 const sagaThree = autoRestart(function* sagaThree() {
-    yield delay(4000)
-    yield put(sagaThreeMessage)
+    yield delay(500)
+    if (errorNum < 10) {
+        errorNum++
+        yield put(sagaThreeMessage(`Error Number ${errorNum}`))
+        throw new Error('Saga One Failed to Do a Thing')
+    }
+    yield put(sagaThreeMessage('Saga Three message'))
+
+    // yield delay(1000)
+    // if (errorNum < 10) {
+    //     errorNum++;
+    //     yield put(sagaThreeMessage(`Saga Three Fail ${errorNumber}`))
+    //     throw new Error('Saga Three Failed to Do a Thing')
+    // }
+    // yield put(sagaThreeMessage('Success'))
+    // yield delay(1000)
+    // yield put(sagaThreeMessage)
 }, console.error)
 
 
