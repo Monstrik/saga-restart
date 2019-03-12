@@ -7,7 +7,8 @@ const initialState = {
   byId: {
     sagaOne: '',
     sagaTwo: '',
-    sagaThree: ''
+    sagaThree: '',
+    sagaFour:''
   }
 }
 
