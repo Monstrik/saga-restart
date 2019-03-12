@@ -12,8 +12,7 @@
     "redux-data-structures": "^0.1.6",
     "redux-first-router": "^1.9.18",
     "redux-first-router-link": "^1.2.0",
-    "redux-saga": "^0.15.4",
-    "styled-components": "^2.1.2"
+    "redux-saga": "^0.15.4"
   },
   "devDependencies": {
     "react-scripts": "^1.0.11",
